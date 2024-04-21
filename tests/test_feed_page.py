@@ -9,7 +9,6 @@ from urls import Urls
 
 class TestFeedPage:
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка модалки заказа')
     @allure.description('Проверяем, что если кликнуть на заказ, откроется всплывающее окно с деталями')
     def test_order_details_modal_appears(self, driver):
@@ -21,7 +20,6 @@ class TestFeedPage:
 
         assert 'бургер' in expect_order_modal_title_text
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка заказов пользователя в "Ленте заказов"')
     @allure.description('Проверяем, что заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»')
     def test_navigate_to_order_history_page(self, driver, set_user_tokens, create_new_order):
@@ -40,7 +38,6 @@ class TestFeedPage:
 
         assert feed_page.check_feed_order_with_id(order_id)
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка счетчика всех выполненных заказов')
     @allure.description('Проверяем, что при создании нового заказа счётчик "Выполнено за всё время" увеличивается')
     def test_total_orders_counter_increase(self, driver, set_user_tokens):
@@ -61,7 +58,6 @@ class TestFeedPage:
 
         assert orders_count_before < orders_count_after
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка счетчика заказов, выполненных сегодня')
     @allure.description('Проверяем, что при создании нового заказа счётчик "Выполнено за сегодня" увеличивается')
     def test_today_orders_counter_increase(self, driver, set_user_tokens):
@@ -82,7 +78,6 @@ class TestFeedPage:
 
         assert orders_count_before < orders_count_after
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка заказа в работе')
     @allure.description('Проверяем, что после оформления заказа его номер появляется в разделе "В работе"')
     def test_new_order_appears_in_feed_progress_section(self, driver, set_user_tokens):

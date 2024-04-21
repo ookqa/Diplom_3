@@ -7,7 +7,6 @@ from urls import Urls
 
 class TestMainPage:
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка перехода по клику на «Конструктор»')
     @allure.description('Проверяем переход к конструктору заказа по клику на кнопку из хэдера')
     def test_navigate_to_constructor_page(self, driver):
@@ -20,7 +19,6 @@ class TestMainPage:
 
         assert current_url == 'https://stellarburgers.nomoreparties.site/' and 'Соберите бургер' in expect_constructor_section_text
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка перехода по клику на «Лента заказов»')
     @allure.description('Проверяем переход к ленте заказов по клику на кнопку из хэдера')
     def test_navigate_to_feed_page(self, driver):
@@ -34,7 +32,6 @@ class TestMainPage:
 
         assert current_url == Urls.FEED_URL and 'Лента заказов' in expect_orders_list_text
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка открытия модалки ингредиента')
     @allure.description('Проверяем открытие модалки с деталями при клике на ингредиент')
     def test_ingredient_modal_window_is_open(self, driver):
@@ -46,7 +43,6 @@ class TestMainPage:
 
         assert 'Детали ингредиента' in expected_ingredient_modal_text
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка закрытия модалки ингредиента')
     @allure.description('Проверяем закрытие модалки ингредиента при клике на крестик закрытия')
     def test_ingredient_modal_window_click_x_button_is_closed(self, driver):
@@ -58,7 +54,6 @@ class TestMainPage:
 
         assert main_page.check_modal_window_is_closed()
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка счетчика при добавлении ингредиента')
     @allure.description('Проверяем, что при добавлении ингредиента в заказ счётчик этого ингредиента увеличивается')
     def test_check_ingredient_count_add_buns_counter_increase(self, driver, set_user_tokens):
@@ -70,7 +65,6 @@ class TestMainPage:
 
         assert int(ingr_count_before_add) < int(ingr_count_after_add)
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка возможности создания заказа')
     @allure.description('Проверяем, что залогиненный пользователь может оформить заказ')
     def test_place_order_authorized_user(self, driver, set_user_tokens):

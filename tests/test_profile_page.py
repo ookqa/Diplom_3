@@ -9,7 +9,6 @@ from urls import Urls
 
 class TestProfilePage:
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка перехода по клику на «Личный кабинет»')
     @allure.description('Проверяем переход к личному кабинету по клику на кнопку из хэдера')
     def test_navigate_to_profile_page(self, driver, set_user_tokens):
@@ -23,7 +22,6 @@ class TestProfilePage:
 
         assert current_url == Urls.PROFILE_URL and 'изменить свои персональные данные' in expect_about_text
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка перехода по клику на «История заказов»')
     @allure.description('Проверяем переход к истории заказов по клику на кнопку в меню')
     def test_navigate_to_order_history_page(self, driver, set_user_tokens, create_new_order):
@@ -40,7 +38,6 @@ class TestProfilePage:
 
         assert current_url == Urls.ORDER_HISTORY_URL and 'бургер' in expect_order_card_text
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка выхода из аккаунта')
     @allure.description('Проверяем выхода из личного кабинета по клику на кнопку "Выход" из меню')
     def test_logout_from_profile_page(self, driver, set_user_tokens):

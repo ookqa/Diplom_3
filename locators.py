@@ -44,7 +44,7 @@ class FeedPageLocators:
     ORDER_MODAL_TITLE = (By.XPATH, "//section[contains(@class, 'Modal_modal_opened')]//div[contains(@class, 'Modal_orderBox')]//h2")
     TOTAL_ORDERS_COUNT = (By.XPATH, "//p[text()='Выполнено за все время:']/following-sibling::p")
     TODAY_ORDERS_COUNT = (By.XPATH, "//p[text()='Выполнено за сегодня:']/following-sibling::p")
-    HEADER_CONSTRUCTOR_BUTTON = (By.XPATH, "//li/a[@href='/']")
+    HEADER_CONSTRUCTOR_BUTTON = (By.XPATH, "//p[text()='Конструктор']")
     NEW_ORDER_IN_PROGRESS = (By.XPATH, "//ul[contains(@class, 'OrderFeed_orderListReady')]/li")
     NEW_ORDER_NUMBER_IN_PROGRESS = (By.XPATH, "//ul[contains(@class, 'OrderFeed_orderListReady')]/li[contains(@class, 'text_type_digits-default')]")
 

@@ -23,3 +23,4 @@ class ResetPasswordPage(BasePage):
     def check_new_password_form_is_highlight(self):
         locator = ResetPasswordPageLocators.PASSWORD_FIELD_ACTIVE
         self.find_element_with_wait(locator)
+        return True

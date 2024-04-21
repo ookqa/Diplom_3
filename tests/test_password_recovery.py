@@ -8,7 +8,6 @@ from urls import Urls
 
 class TestPasswordRecovery:
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка перехода на страницу восстановления пароля')
     @allure.description('Проверяем переход на страницу восстановления пароля по кнопке «Восстановить пароль»')
     def test_navigate_to_password_recovery_page(self, driver):
@@ -22,7 +21,6 @@ class TestPasswordRecovery:
 
         assert current_url == Urls.FORGOT_PASSWORD_URL and 'Восстановление пароля' in expect_password_recovery_form_title
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка ввода почты для восстановления')
     @allure.description('Проверяем ввод почты и клик по кнопке «Восстановить»')
     def test_input_email_and_click_recovery_button(self, driver):
@@ -38,7 +36,6 @@ class TestPasswordRecovery:
 
         assert current_url == Urls.RESET_PASSWORD_URL and 'Восстановление пароля' in expect_new_password__form_title
 
-    @pytest.mark.parametrize('driver', ['chrome', 'firefox'], indirect=True)
     @allure.title('Проверка кнопки "показать пароль"')
     @allure.description('Проверяем, что клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его')
     def test_input_email_click_eye_button_highlight_field(self, driver):
@@ -50,4 +47,5 @@ class TestPasswordRecovery:
         reset_password_page = ResetPasswordPage(driver)
         reset_password_page.wait_for_new_password_form()
         reset_password_page.click_eye_button()
-        reset_password_page.check_new_password_form_is_highlight()
+
+        assert reset_password_page.check_new_password_form_is_highlight() == True

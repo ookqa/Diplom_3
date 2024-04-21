@@ -9,28 +9,29 @@ from urls import Urls
 faker = Faker()
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(params=[webdriver.Chrome, webdriver.Firefox], ids=['chrome', 'firefox'])
 def driver(request):
-    driver_type = request.param
-    if driver_type == 'chrome':
+    driver_class = request.param
+    if driver_class == webdriver.Chrome:
         options = Options()
         options.add_argument("--window-size=1920,1080")
         driver = webdriver.Chrome(options=options)
-    elif driver_type == 'firefox':
-        options = Options()
-        options.add_argument("--width=1920")
-        options.add_argument("--height=1080")
+    elif driver_class == webdriver.Firefox:
         driver = webdriver.Firefox()
 
     yield driver
     driver.quit()
 
-
 @pytest.fixture()
-def create_new_user():
-    email = 'buntester' + faker.lexify(text='????????????') + '@bunstester.com'
+def generate_user_credentials():
+    email = ('buntester' + faker.lexify(text='????????????') + '@bunstester.com').lower()
     password = faker.lexify(text='????????????')
     name = faker.name()
+    return email, password, name
+
+@pytest.fixture()
+def create_new_user(generate_user_credentials):
+    email, password, name = generate_user_credentials
     payload = {"email": email, "password": password, "name": name}
     response = requests.post(f"{Urls.REGISTER_USER}", data=payload)
     data = response.json()
